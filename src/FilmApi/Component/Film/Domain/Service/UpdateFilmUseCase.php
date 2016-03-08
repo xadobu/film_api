@@ -2,7 +2,7 @@
 
 namespace FilmApi\Component\FilmComponent\Domain\Service;
 
-use FilmApi\Component\FilmComponent\Domain\Model\Film;
+use FilmApi\Component\Film\Domain\Model\Film;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class UpdateFilmUseCase
