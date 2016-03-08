@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle;
+namespace FilmBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class AppBundle extends Bundle
+class FilmBundle extends Bundle
 {
 }
