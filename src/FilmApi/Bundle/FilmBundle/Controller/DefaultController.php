@@ -1,6 +1,6 @@
 <?php
 
-namespace FilmBundle\Controller;
+namespace FilmApi\Bundle\FilmBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

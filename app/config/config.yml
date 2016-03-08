@@ -57,7 +57,14 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+#        auto_mapping: true
+        mappings:
+            FilmApi\Component\Film\Domain\Model:
+                type: yml
+                dir: '%kernel.root_dir%/../src/FilmApi/Bundle/FilmBundle/Resources/config/doctrine'
+                is_bundle: false
+                prefix: FilmApi\Component\Film\Domain\Model
+                alias: Film
 
 # Swiftmailer Configuration
 swiftmailer:

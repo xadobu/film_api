@@ -1,9 +1,12 @@
 <?php
 
-namespace FilmApi\Component\FilmComponent\Domain\Model;
+namespace FilmApi\Component\Film\Domain\Model;
+
+use Ramsey\Uuid\Uuid;
 
 class Film
 {
+    private $id;
     private $name;
     private $year;
     private $date;
@@ -18,10 +21,19 @@ class Film
      */
     public function __construct($name, $year, $date, $url)
     {
+        $this->id = Uuid::uuid4();
         $this->name = $name;
         $this->year = $year;
         $this->date = $date;
         $this->url = $url;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
