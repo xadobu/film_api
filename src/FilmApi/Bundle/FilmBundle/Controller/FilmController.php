@@ -16,7 +16,16 @@ class FilmController extends Controller
             return new Response('1');
         }
 
-        $params = json_decode($content,true);
+        $params = json_decode($content, true);
+
+
+
+        $params['name'];
+        $params['year'];
+        $params['date'];
+        $params['url'];
+        $filmDto = new FilmDTO();
+
 
         $createFilmUseCase = $this->get("createFilmUseCase");
         //$createFilmUseCase->execute();
