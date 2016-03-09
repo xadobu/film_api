@@ -1,8 +1,7 @@
 <?php
 
-namespace FilmApi\Component\FilmComponent\Domain\Service;
+namespace FilmApi\Component\Film\Application\Service\ListFilms;
 
-use FilmApi\Component\FilmComponent\Domain\Model\Film;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class ListFilmsUseCase
