@@ -12,9 +12,14 @@ class FilmController extends Controller
     {
         $content = $request->getContent();
 
-        if(!empty($content)) {
-            $params = json_decode($content,true);
+        if(empty($content)) {
+            return new Response('1');
         }
+
+        $params = json_decode($content,true);
+
+        $createFilmUseCase = $this->get("createFilmUseCase");
+        //$createFilmUseCase->execute();
 
         return new Response('1');
     }
@@ -24,13 +29,29 @@ class FilmController extends Controller
         return new Response('1');
     }
 
-    public function updateAction()
+    public function updateAction(Request $request, $id)
     {
+
+        $content = $request->getContent();
+
+        if(!empty($content)) {
+            return new Response('1');
+        }
+
+        $params = json_decode($content,true);
+
+        $updateFilmUseCase = $this->get("updateFilmUseCase");
+        //$updateFilmUseCase->execute();
+
         return new Response('1');
     }
 
-    public function deleteAction()
+    public function deleteAction(Request $request, $id)
     {
+
+        $deleteFilmUseCase = $this->get("deleteFilmUseCase");
+        $deleteFilmUseCase->execute($id);
+
         return new Response('1');
     }
 }
