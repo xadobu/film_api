@@ -1,6 +1,6 @@
 <?php
 
-namespace FilmApi\Component\Film\Event;
+namespace FilmApi\Component\Film\Domain\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 

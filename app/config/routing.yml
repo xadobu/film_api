@@ -1,3 +1,19 @@
-app:
-    resource: "@FilmApi/Bundle/FilmBundle/Controller/"
-    type:     annotation
+api_create_film:
+    path: /api/v1/film
+    defaults: { _controller: FilmBundle:Film:create }
+    methods: [POST]
+
+api_list_films:
+    path: /api/v1/film
+    defaults: { _controller: FilmBundle:Film:show }
+    methods: [GET]
+
+api_update_film:
+    path: /api/v1/film/{id}
+    defaults: { _controller: FilmBundle:Film:update }
+    methods: [PUT]
+
+api_delete_film:
+    path: /api/v1/film/{id}
+    defaults: { _controller: FilmBundle:Film:delete }
+    methods: [DELETE]

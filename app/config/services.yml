@@ -7,3 +7,27 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    kernel.subscriber.filmMySQLListerner:
+        class: FilmApi\Bundle\FilmBundle\Listener\FilmMySQLListener
+        arguments:
+            entityManager: '@doctrine.orm.entity_manager'
+
+    createFilmUserCase:
+        class: FilmApi\Component\FilmComponent\Domain\Service\CreateFilmUseCase
+        arguments:
+            eventDispatcherInterface: '@event_dispatcher'
+
+    listFilmUserCase:
+        class: FilmApi\Component\FilmComponent\Domain\Service\ListFilmUseCase
+        arguments:
+            eventDispatcherInterface: '@event_dispatcher'
+
+    updateFilmUserCase:
+        class: FilmApi\Component\FilmComponent\Domain\Service\UpdateFilmUseCase
+        arguments:
+            eventDispatcherInterface: '@event_dispatcher'
+
+    deleteFilmUserCase:
+        class: FilmApi\Component\FilmComponent\Domain\Service\DeleteFilmUseCase
+        arguments:
+            eventDispatcherInterface: '@event_dispatcher'
