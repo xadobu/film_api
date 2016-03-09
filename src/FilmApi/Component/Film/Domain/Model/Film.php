@@ -6,30 +6,10 @@ use Ramsey\Uuid\Uuid;
 
 class Film
 {
-
-    /**
-     * @var \Ramsey\Uuid\UuidInterface
-     */
     private $id;
-
-    /**
-     * @var string
-     */
     private $name;
-
-    /**
-     * @var string
-     */
     private $year;
-
-    /**
-     * @var string
-     */
     private $date;
-
-    /**
-     * @var string
-     */
     private $url;
 
     /**
@@ -48,16 +28,13 @@ class Film
         $this->url = $url;
     }
 
-    /**
-     * @return \Ramsey\Uuid\UuidInterface
-     */
     public function getId()
     {
-        return $this->id;
+
     }
 
     /**
-     * @return string
+     * @return mixed
      */
     public function getName()
     {
@@ -65,7 +42,7 @@ class Film
     }
 
     /**
-     * @return string
+     * @return mixed
      */
     public function getYear()
     {
@@ -73,7 +50,7 @@ class Film
     }
 
     /**
-     * @return string
+     * @return mixed
      */
     public function getDate()
     {
@@ -81,7 +58,7 @@ class Film
     }
 
     /**
-     * @return string
+     * @return mixed
      */
     public function getUrl()
     {
@@ -89,39 +66,35 @@ class Film
     }
 
     /**
-     * @param $name
-     * @return Film
+     * @param mixed $name
      */
     public function setName($name)
     {
-        return new Film($name, $this->year, $this->date, $this->url);
+        $this->name = $name;
     }
 
     /**
-     * @param $year
-     * @return Film
+     * @param mixed $year
      */
     public function setYear($year)
     {
-        return new Film($this->name, $year, $this->date, $this->url);
+        $this->year = $year;
     }
 
     /**
-     * @param $date
-     * @return Film
+     * @param mixed $date
      */
     public function setDate($date)
     {
-        return new Film($this->name, $this->year, $date, $this->url);
+        $this->date = $date;
     }
 
     /**
-     * @param $url
-     * @return Film
+     * @param mixed $url
      */
     public function setUrl($url)
     {
-        return new Film($this->name, $this->year, $this->date, $url);
+        $this->url = $url;
     }
 
 
