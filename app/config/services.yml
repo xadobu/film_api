@@ -12,22 +12,22 @@ services:
         arguments:
             entityManager: '@doctrine.orm.entity_manager'
 
-    createFilmUserCase:
+    createFilmUseCase:
         class: FilmApi\Component\FilmComponent\Domain\Service\CreateFilmUseCase
         arguments:
             eventDispatcherInterface: '@event_dispatcher'
 
-    listFilmUserCase:
+    listFilmUseCase:
         class: FilmApi\Component\FilmComponent\Domain\Service\ListFilmUseCase
         arguments:
             eventDispatcherInterface: '@event_dispatcher'
 
-    updateFilmUserCase:
+    updateFilmUseCase:
         class: FilmApi\Component\FilmComponent\Domain\Service\UpdateFilmUseCase
         arguments:
             eventDispatcherInterface: '@event_dispatcher'
 
-    deleteFilmUserCase:
+    deleteFilmUseCase:
         class: FilmApi\Component\FilmComponent\Domain\Service\DeleteFilmUseCase
         arguments:
             eventDispatcherInterface: '@event_dispatcher'
