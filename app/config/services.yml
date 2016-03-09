@@ -18,16 +18,16 @@ services:
             eventDispatcherInterface: '@event_dispatcher'
 
     listFilmUseCase:
-        class: FilmApi\Component\FilmComponent\Domain\Service\ListFilmUseCase
+        class: FilmApi\Component\Film\Application\Service\ListFilms\ListFilmsUseCase
         arguments:
             eventDispatcherInterface: '@event_dispatcher'
 
     updateFilmUseCase:
-        class: FilmApi\Component\FilmComponent\Domain\Service\UpdateFilmUseCase
+        class: FilmApi\Component\Film\Application\Service\UpdateFilm\UpdateFilmUseCase
         arguments:
             eventDispatcherInterface: '@event_dispatcher'
 
     deleteFilmUseCase:
-        class: FilmApi\Component\FilmComponent\Domain\Service\DeleteFilmUseCase
+        class: FilmApi\Component\Film\Application\Service\DeleteFilm\DeleteFilmUseCase
         arguments:
             eventDispatcherInterface: '@event_dispatcher'

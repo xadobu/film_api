@@ -2,6 +2,7 @@
 
 namespace FilmApi\Bundle\FilmBundle\Controller;
 
+use FilmApi\Component\Film\Application\DTOs\FilmDTO;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,10 +17,19 @@ class FilmController extends Controller
             return new Response('1');
         }
 
-        $params = json_decode($content,true);
+        $params = json_decode($content, true);
+
+
+
+        $name = $params['name'];
+        $year = $params['year'];
+        $date = $params['date'];
+        $url = $params['url'];
+        $filmDto = new FilmDTO(null, $name, $year, $date, $url);
+
 
         $createFilmUseCase = $this->get("createFilmUseCase");
-        //$createFilmUseCase->execute();
+        $createFilmUseCase->execute($filmDto);
 
         return new Response('1');
     }
