@@ -6,10 +6,30 @@ use Ramsey\Uuid\Uuid;
 
 class Film
 {
+
+    /**
+     * @var \Ramsey\Uuid\UuidInterface
+     */
     private $id;
+
+    /**
+     * @var string
+     */
     private $name;
+
+    /**
+     * @var string
+     */
     private $year;
+
+    /**
+     * @var string
+     */
     private $date;
+
+    /**
+     * @var string
+     */
     private $url;
 
     /**
@@ -29,7 +49,7 @@ class Film
     }
 
     /**
-     * @return mixed
+     * @return \Ramsey\Uuid\UuidInterface
      */
     public function getId()
     {
@@ -37,7 +57,7 @@ class Film
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -45,7 +65,7 @@ class Film
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getYear()
     {
@@ -53,7 +73,7 @@ class Film
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getDate()
     {
@@ -61,10 +81,48 @@ class Film
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getUrl()
     {
         return $this->url;
     }
+
+    /**
+     * @param $name
+     * @return Film
+     */
+    public function setName($name)
+    {
+        return new Film($name, $this->year, $this->date, $this->url);
+    }
+
+    /**
+     * @param $year
+     * @return Film
+     */
+    public function setYear($year)
+    {
+        return new Film($this->name, $year, $this->date, $this->url);
+    }
+
+    /**
+     * @param $date
+     * @return Film
+     */
+    public function setDate($date)
+    {
+        return new Film($this->name, $this->year, $date, $this->url);
+    }
+
+    /**
+     * @param $url
+     * @return Film
+     */
+    public function setUrl($url)
+    {
+        return new Film($this->name, $this->year, $this->date, $url);
+    }
+
+
 }
