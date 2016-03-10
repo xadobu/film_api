@@ -24,7 +24,7 @@ class ListFilmsUseCase implements ListFilms
 
     public function execute() {
         $result = $this->em->getRepository('Film:Film')->findAll();
-        $output = array_map(function($film) {$this->filmToDTO($film);}, $result);
+        $output = array_map(function(Film $film) {return $this->filmToDTO($film);}, $result);
 
         return $output;
 

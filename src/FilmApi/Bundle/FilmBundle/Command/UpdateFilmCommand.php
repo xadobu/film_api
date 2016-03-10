@@ -49,7 +49,7 @@ class UpdateFilmCommand extends ContainerAwareCommand
         $id = $input->getArgument("id");
         $name = $input->getArgument("name");
         $year = $input->getArgument("year");
-        $date = $input->getArgument("year");
+        $date = $input->getArgument("date");
         $url = $input->getArgument("url");
 
         $filmDto = new FilmDTO($id, $name, $year, $date, $url);

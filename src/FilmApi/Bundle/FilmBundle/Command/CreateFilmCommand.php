@@ -43,7 +43,7 @@ class CreateFilmCommand extends ContainerAwareCommand
         $container = $this->getContainer();
         $name = $input->getArgument("name");
         $year = $input->getArgument("year");
-        $date = $input->getArgument("year");
+        $date = $input->getArgument("date");
         $url = $input->getArgument("url");
 
         $filmDto = new FilmDTO(null, $name, $year, $date, $url);
