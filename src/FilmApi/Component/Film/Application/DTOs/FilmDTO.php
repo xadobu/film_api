@@ -12,7 +12,7 @@ class FilmDTO implements JsonSerializable
     private $date;
     private $url;
 
-    public function __construct($id, $name, $year, $date, $url)
+    public function __construct($id = null, $name = null, $year = null, $date = null, $url = null)
     {
         $this->id = $id;
         $this->name = $name;

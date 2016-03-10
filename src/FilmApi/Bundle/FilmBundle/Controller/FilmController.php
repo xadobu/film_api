@@ -37,7 +37,7 @@ class FilmController extends Controller
         $listFilmsUseCase = $this->get("listFilmsUseCase");
         $result = $listFilmsUseCase->execute();
 
-        return new JsonResponse(json_encode($result));
+        return new JsonResponse($result);
     }
 
     public function updateAction(Request $request, $id)
