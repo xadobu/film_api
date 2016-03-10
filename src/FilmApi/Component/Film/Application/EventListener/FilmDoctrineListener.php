@@ -29,7 +29,8 @@ class FilmDoctrineListener implements FilmListener
 
     public function updateFilm(FilmEvent $e)
     {
-        $this->em->flush($this->filmFromDTO($e->film));
+        $filmRepository = $this->em->getRepository('Film:Film');
+        //$this->em->flush($this->filmFromDTO($e->film));
     }
 
     public function deleteFilm(FilmEvent $e)

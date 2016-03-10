@@ -45,13 +45,22 @@ class FilmController extends Controller
 
         $content = $request->getContent();
 
-        if(!empty($content)) {
-            return new Response('1');
+        if(empty($content)) {
+            return new Response('0');
         }
 
         $params = json_decode($content,true);
 
-        $updateFilmUseCase = $this->get("updateFilmUseCase");
+        $name = $params['name'];
+        $year = $params['year'];
+        $date = $params['date'];
+        $url = $params['url'];
+        $filmDto = new FilmDTO($id, $name, $year, $date, $url);
+
+        $filmListener = new FilmDoctrineListener($this->getDoctrine()->getEntityManager());
+        $filmListener->updateFilm(new FilmEvent($filmDto));
+
+        //$updateFilmUseCase = $this->get("updateFilmUseCase");
         //$updateFilmUseCase->execute();
 
         return new Response('1');
