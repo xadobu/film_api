@@ -7,13 +7,13 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
-    kernel.subscriber.filmMySQLListerner:
-        class: FilmApi\Bundle\FilmBundle\Listener\FilmMySQLListener
-        arguments:
-            entityManager: '@doctrine.orm.entity_manager'
+#    kernel.subscriber.filmMySQLListerner:
+#        class: FilmApi\Component\Film\Application\EventListener\FilmListener
+#        arguments:
+#            entityManager: '@doctrine.orm.entity_manager'
 
     createFilmUseCase:
-        class: FilmApi\Component\FilmComponent\Domain\Service\CreateFilmUseCase
+        class: \FilmApi\Component\Film\Application\Service\CreateFilm\CreateFilmUseCase
         arguments:
             eventDispatcherInterface: '@event_dispatcher'
 

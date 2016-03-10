@@ -30,7 +30,7 @@ class Film
 
     public function getId()
     {
-
+        return $this->id;
     }
 
     /**

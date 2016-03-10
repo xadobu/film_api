@@ -7,7 +7,7 @@ use FilmApi\Component\Film\Application\DTOs\FilmDTO;
 use FilmApi\Component\Film\Application\Event\FilmEvent;
 use FilmApi\Component\Film\Domain\Model\Film;
 
-class FilmDoctrineListener extends FilmListener
+class FilmDoctrineListener implements FilmListener
 {
     private $em;
 
@@ -18,7 +18,7 @@ class FilmDoctrineListener extends FilmListener
 
     private function filmFromDTO(FilmDTO $filmDTO)
     {
-        return new Film($filmDTO->getId(), $filmDTO->getName(), $filmDTO->getYear(), $filmDTO->getDate(), $filmDTO->getUrl());
+        return new Film($filmDTO->getName(), $filmDTO->getYear(), $filmDTO->getDate(), $filmDTO->getUrl());
     }
 
     public function createFilm(FilmEvent $e)

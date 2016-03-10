@@ -3,6 +3,8 @@
 namespace FilmApi\Bundle\FilmBundle\Controller;
 
 use FilmApi\Component\Film\Application\DTOs\FilmDTO;
+use FilmApi\Component\Film\Application\Event\FilmEvent;
+use FilmApi\Component\Film\Application\EventListener\FilmDoctrineListener;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,12 +16,10 @@ class FilmController extends Controller
         $content = $request->getContent();
 
         if(empty($content)) {
-            return new Response('1');
+            return new Response('0');
         }
 
         $params = json_decode($content, true);
-
-
 
         $name = $params['name'];
         $year = $params['year'];
@@ -27,7 +27,8 @@ class FilmController extends Controller
         $url = $params['url'];
         $filmDto = new FilmDTO(null, $name, $year, $date, $url);
 
-
+        $filmListener = new FilmDoctrineListener($this->getDoctrine()->getEntityManager());
+        $filmListener->createFilm(new FilmEvent($filmDto));
         $createFilmUseCase = $this->get("createFilmUseCase");
         $createFilmUseCase->execute($filmDto);
 
