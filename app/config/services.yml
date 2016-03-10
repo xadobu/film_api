@@ -38,7 +38,7 @@ services:
         arguments:
             eventDispatcherInterface: '@event_dispatcher'
 
-    listFilmUseCase:
+    listFilmsUseCase:
         class: FilmApi\Component\Film\Application\Service\ListFilms\ListFilmsUseCase
         arguments:
             eventDispatcherInterface: '@event_dispatcher'
@@ -53,3 +53,9 @@ services:
         class: FilmApi\Component\Film\Application\Service\DeleteFilm\DeleteFilmUseCase
         arguments:
             eventDispatcherInterface: '@event_dispatcher'
+
+    filmCacheService:
+        class:
+        decorates: listFilmsUseCase
+        decoration_inner_name: listFilm.old
+        arguments: ["@listFilm.old"]

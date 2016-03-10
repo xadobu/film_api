@@ -34,7 +34,7 @@ class FilmController extends Controller
 
     public function showAction()
     {
-        $listFilmsUseCase = $this->get("listFilmUseCase");
+        $listFilmsUseCase = $this->get("listFilmsUseCase");
         $result = $listFilmsUseCase->execute();
 
         return new JsonResponse(json_encode($result));

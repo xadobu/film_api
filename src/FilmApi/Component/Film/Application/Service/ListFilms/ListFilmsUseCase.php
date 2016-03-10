@@ -7,7 +7,7 @@ use FilmApi\Component\Film\Application\DTOs\FilmDTO;
 use FilmApi\Component\Film\Domain\Model\Film;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class ListFilmsUseCase
+class ListFilmsUseCase implements ListFilms
 {
     private $dispatcher;
     private $em;
