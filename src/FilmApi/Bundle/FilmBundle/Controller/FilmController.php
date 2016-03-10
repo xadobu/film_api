@@ -3,9 +3,8 @@
 namespace FilmApi\Bundle\FilmBundle\Controller;
 
 use FilmApi\Component\Film\Application\DTOs\FilmDTO;
-use FilmApi\Component\Film\Application\Event\FilmEvent;
-use FilmApi\Component\Film\Application\EventListener\FilmDoctrineListener;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -15,8 +14,8 @@ class FilmController extends Controller
     {
         $content = $request->getContent();
 
-        if(empty($content)) {
-            return new Response('0');
+        if (empty($content)) {
+            return new Response('Error: no content provided', Response::HTTP_BAD_REQUEST);
         }
 
         $params = json_decode($content, true);
@@ -27,29 +26,29 @@ class FilmController extends Controller
         $url = $params['url'];
         $filmDto = new FilmDTO(null, $name, $year, $date, $url);
 
-        $filmListener = new FilmDoctrineListener($this->getDoctrine()->getEntityManager());
-        $filmListener->createFilm(new FilmEvent($filmDto));
         $createFilmUseCase = $this->get("createFilmUseCase");
         $createFilmUseCase->execute($filmDto);
 
-        return new Response('1');
+        return new JsonResponse(array("message"=> "Film created successfully!"), Response::HTTP_CREATED);
     }
 
     public function showAction()
     {
-        return new Response('1');
+        $listFilmsUseCase = $this->get("listFilmUseCase");
+        $result = $listFilmsUseCase->execute();
+
+        return new JsonResponse(json_encode($result));
     }
 
     public function updateAction(Request $request, $id)
     {
-
         $content = $request->getContent();
 
-        if(empty($content)) {
-            return new Response('0');
+        if (empty($content)) {
+            return new JsonResponse(array("message"=> "Error: no content provided"), Response::HTTP_BAD_REQUEST);
         }
 
-        $params = json_decode($content,true);
+        $params = json_decode($content, true);
 
         $name = $params['name'];
         $year = $params['year'];
@@ -57,21 +56,19 @@ class FilmController extends Controller
         $url = $params['url'];
         $filmDto = new FilmDTO($id, $name, $year, $date, $url);
 
-        $filmListener = new FilmDoctrineListener($this->getDoctrine()->getEntityManager());
-        $filmListener->updateFilm(new FilmEvent($filmDto));
+        $updateFilmUseCase = $this->get("updateFilmUseCase");
+        $updateFilmUseCase->execute($filmDto);
 
-        //$updateFilmUseCase = $this->get("updateFilmUseCase");
-        //$updateFilmUseCase->execute();
-
-        return new Response('1');
+        return new JsonResponse(array("message"=> "Film successfully modified!"));
     }
 
-    public function deleteAction(Request $request, $id)
+    public function deleteAction($id)
     {
+        $filmDto = new FilmDTO($id, null, null, null, null);
 
         $deleteFilmUseCase = $this->get("deleteFilmUseCase");
-        $deleteFilmUseCase->execute($id);
+        $deleteFilmUseCase->execute($filmDto);
 
-        return new Response('1');
+        return new JsonResponse(array("message"=> "Film successfully modified!"));
     }
 }

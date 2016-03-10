@@ -12,6 +12,27 @@ services:
 #        arguments:
 #            entityManager: '@doctrine.orm.entity_manager'
 
+    createFilmDoctrineListener:
+        class: FilmApi\Component\Film\Application\EventListener\CreateFilmDoctrineListener
+        arguments:
+            entityManager: '@doctrine.orm.entity_manager'
+        tags:
+            - { name: kernel.event_listener, event: film.created}
+
+    updateFilmDoctrineListener:
+        class: FilmApi\Component\Film\Application\EventListener\UpdateFilmDoctrineListener
+        arguments:
+            entityManager: '@doctrine.orm.entity_manager'
+        tags:
+            - { name: kernel.event_listener, event: film.updated }
+    deleteFilmDoctrineListener:
+        class: FilmApi\Component\Film\Application\EventListener\DeleteFilmDoctrineListener
+        arguments:
+            entityManager: '@doctrine.orm.entity_manager'
+        tags:
+            - { name: kernel.event_listener, event: film.deleted }
+
+
     createFilmUseCase:
         class: FilmApi\Component\Film\Application\Service\CreateFilm\CreateFilmUseCase
         arguments:
@@ -21,6 +42,7 @@ services:
         class: FilmApi\Component\Film\Application\Service\ListFilms\ListFilmsUseCase
         arguments:
             eventDispatcherInterface: '@event_dispatcher'
+            entityManager: '@doctrine.orm.entity_manager'
 
     updateFilmUseCase:
         class: FilmApi\Component\Film\Application\Service\UpdateFilm\UpdateFilmUseCase

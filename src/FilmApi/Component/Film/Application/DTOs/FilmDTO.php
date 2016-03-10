@@ -2,7 +2,9 @@
 
 namespace FilmApi\Component\Film\Application\DTOs;
 
-class FilmDTO
+use JsonSerializable;
+
+class FilmDTO implements JsonSerializable
 {
     private $id;
     private $name;
@@ -42,5 +44,16 @@ class FilmDTO
     public function getUrl()
     {
         return $this->url;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            "id" => $this->id,
+            "name" => $this->name,
+            "year" => $this->year,
+            "date" => $this->date,
+            "url" => $this->url
+        ];
     }
 }
