@@ -17,6 +17,6 @@ class DeleteFilmUseCase
 
     public function execute(FilmDTO $film) {
         $filmEvent = new FilmEvent($film);
-        $this->dispatcher->dispatch('film.deleted', $filmEvent);
+        $this->dispatcher->dispatch(FilmEvent::FILM_DELETED, $filmEvent);
     }
 }

@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FilmController extends Controller
 {
+
     public function createAction(Request $request)
     {
         $content = $request->getContent();
@@ -19,6 +20,10 @@ class FilmController extends Controller
         }
 
         $params = json_decode($content, true);
+
+        if(!$this->validateFilmParameters($params)) {
+            return new JsonResponse(array("message"=> "Wrong film format!"), Response::HTTP_BAD_REQUEST);
+        }
 
         $name = $params['name'];
         $year = $params['year'];
@@ -50,6 +55,10 @@ class FilmController extends Controller
 
         $params = json_decode($content, true);
 
+        if(!$this->validateFilmParameters($params)) {
+            return new JsonResponse(array("message"=> "Wrong film format!"), Response::HTTP_BAD_REQUEST);
+        }
+
         $name = $params['name'];
         $year = $params['year'];
         $date = $params['date'];
@@ -69,6 +78,19 @@ class FilmController extends Controller
         $deleteFilmUseCase = $this->get("deleteFilmUseCase");
         $deleteFilmUseCase->execute($filmDto);
 
-        return new JsonResponse(array("message"=> "Film successfully modified!"));
+        return new JsonResponse(array("message"=> "Film successfully deleted!"));
+    }
+
+    private function validateFilmParameters($params)
+    {
+        if (
+            !isset($params['name']) ||
+            !isset($params['year']) ||
+            !isset($params['date']) ||
+            !isset($params['url'])
+        ) {
+           return false;
+        }
+        return true;
     }
 }

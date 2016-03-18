@@ -17,6 +17,6 @@ class UpdateFilmUseCase
 
     public function execute(FilmDTO $film) {
         $filmEvent = new FilmEvent($film);
-        $this->dispatcher->dispatch('film.updated', $filmEvent);
+        $this->dispatcher->dispatch(FilmEvent::FILM_UPDATED, $filmEvent);
     }
 }

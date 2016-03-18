@@ -1,15 +1,15 @@
 <?php
 
-namespace FilmApi\Bundle\CacheBundle\Component;
+namespace FilmApi\Component\FilmCache;
 
 use Doctrine\Common\Cache\CacheProvider;
-use Doctrine\Common\Cache\FilesystemCache;
 use FilmApi\Component\Film\Application\Service\ListFilms\ListFilms;
 
 class FilmCache
 {
     private $decoratedObject;
     private $cache;
+    const CACHE_KEY = "listedFilms";
 
     public function __construct(ListFilms $decoratedObject, CacheProvider $cache)
     {
@@ -18,13 +18,12 @@ class FilmCache
     }
 
     public function execute() {
-        var_dump("cached!");
-        if($resultString = $this->cache->fetch("listedFilms")) {
+        if($resultString = $this->cache->fetch(FilmCache::CACHE_KEY)) {
             $result = unserialize($resultString);
         } else {
             $result = $this->decoratedObject->execute();
             $serializedFilms = serialize($result);
-            $this->cache->save("listedFilms", $serializedFilms);
+            $this->cache->save(FilmCache::CACHE_KEY, $serializedFilms);
         }
         return $result;
     }

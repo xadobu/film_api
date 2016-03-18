@@ -17,6 +17,6 @@ class CreateFilmUseCase
 
     public function execute(FilmDTO $film) {
         $filmEvent = new FilmEvent($film);
-        $this->dispatcher->dispatch('film.created', $filmEvent);
+        $this->dispatcher->dispatch(FilmEvent::FILM_CREATED, $filmEvent);
     }
 }

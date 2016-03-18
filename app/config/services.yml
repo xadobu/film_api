@@ -54,3 +54,19 @@ services:
         arguments:
             eventDispatcherInterface: '@event_dispatcher'
 
+    cache:
+        class: Doctrine\Common\Cache\FilesystemCache
+        arguments: ["%kernel.root_dir%/cache"]
+    filmCacheService:
+        class: FilmApi\Component\FilmCache\FilmCache
+        decorates: listFilmsUseCase
+        decoration_inner_name: listFilm.old
+        arguments: ["@listFilm.old","@cache"]
+    filmCacheListener:
+        class: FilmApi\Component\FilmCache\EventListener\FilmCacheListener
+        arguments:
+            cache: '@cache'
+        tags:
+            - { name: kernel.event_listener, event: film.created }
+            - { name: kernel.event_listener, event: film.updated }
+            - { name: kernel.event_listener, event: film.deleted }
