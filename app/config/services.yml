@@ -54,8 +54,3 @@ services:
         arguments:
             eventDispatcherInterface: '@event_dispatcher'
 
-    filmCacheService:
-        class:
-        decorates: listFilmsUseCase
-        decoration_inner_name: listFilm.old
-        arguments: ["@listFilm.old"]

@@ -1,0 +1,11 @@
+services:
+    cache:
+        class: Doctrine\Common\Cache\FilesystemCache
+        arguments: ["%kernel.root_dir%/cache"]
+
+    filmCacheService:
+        class: FilmApi\Bundle\CacheBundle\Component\FilmCache
+        decorates: listFilmsUseCase
+        decoration_inner_name: listFilm.old
+        arguments: ["@listFilm.old","@cache"]
+
